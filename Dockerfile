@@ -16,6 +16,7 @@ ENV LDFLAGS=" \
 WORKDIR /release
 ADD . .
 RUN go mod download && go mod verify
+RUN echo "go build -v --ldflags "${LDFLAGS}" -o ${NAME} ${MAIN_PATH}"
 RUN go build -v --ldflags "${LDFLAGS}" -o ${NAME} ${MAIN_PATH}
 
 FROM ubuntu:22.04 as prod

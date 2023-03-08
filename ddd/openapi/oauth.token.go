@@ -10,6 +10,7 @@ import (
 func token(ctx iris.Context) {
 
 	var resp app.Response
+
 	err := Srv.HandleTokenRequest(ctx.ResponseWriter(), ctx.Request())
 	if err != nil {
 		log.Info(err)

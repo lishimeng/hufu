@@ -7,7 +7,7 @@ import (
 	etc2 "github.com/lishimeng/app-starter/etc"
 	"github.com/lishimeng/go-log"
 	persistence "github.com/lishimeng/go-orm"
-	"github.com/lishimeng/oauth2/cmd/oauth/ddd"
+	"github.com/lishimeng/oauth2/ddd"
 	"github.com/lishimeng/oauth2/internal/db/model"
 	"github.com/lishimeng/oauth2/internal/etc"
 	"github.com/lishimeng/oauth2/static"
@@ -59,12 +59,12 @@ func _main() (err error) {
 		builder.EnableDatabase(dbConfig.Build(),
 			model.Tables()...).
 			SetWebLogLevel("debug").
-			PrintVersion().
 			EnableOrmLog().
 			EnableStaticWeb(func() http.FileSystem {
 				return http.FS(static.Static)
 			}).
-			EnableWeb(etc.Config.Web.Listen, ddd.Route)
+			EnableWeb(etc.Config.Web.Listen, ddd.Route).
+			PrintVersion()
 		return err
 	}, func(s string) {
 		log.Info(s)

@@ -2,11 +2,11 @@ package ddd
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/lishimeng/oauth2/cmd/oauth/ddd/openapi"
+	openapi2 "github.com/lishimeng/oauth2/ddd/openapi"
 )
 
 func Route(root *iris.Application) {
-	openapi.Init()
+	openapi2.Init()
 	group := root.Party("/oauth2")
-	openapi.Router(group)
+	openapi2.Router(group)
 }

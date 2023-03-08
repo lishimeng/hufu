@@ -1,28 +1,31 @@
 #!/bin/bash
-NAME="oauth2"
-MAIN_PATH="cmd/oauth/main.go"
-ORG="lishimeng"
+Name="oauth2"
+MainPath="cmd/oauth/main.go"
+Org="lishimeng"
 
 # shellcheck disable=SC2046
-VERSION=$(git describe --tags $(git rev-list --tags --max-count=1))
+Version=$(git describe --tags $(git rev-list --tags --max-count=1))
 # shellcheck disable=SC2154
-COMMIT=$(git log --pretty=format:"%h" -1)
+GitCommit=$(git log --pretty=format:"%h" -1)
+BuildTime=$(date +%FT%T%z)
 
 build_application(){
-  git checkout "${VERSION}"
-  docker build -t "${ORG}/${NAME}:${VERSION}" \
-  --build-arg NAME="${NAME}" \
-  --build-arg VERSION="${VERSION}" \
-  --build-arg COMMIT="${COMMIT}" \
-  --build-arg MAIN_PATH="${MAIN_PATH}" .
+  git checkout "${Version}"
+  docker build -t "${Org}/${Name}:${Version}" \
+  --build-arg NAME="${Name}" \
+  --build-arg VERSION="${Version}" \
+  --build-arg BUILD_TIME="${BuildTime}" \
+  --build-arg COMMIT="${GitCommit}" \
+  --build-arg MAIN_PATH="${MainPath}" .
 }
 
 print_app_info(){
   echo "****************************************"
-  echo "App:${NAME}"
-  echo "Version:${VERSION}"
-  echo "Commit:${COMMIT}"
-  echo "Main_Path:${MAIN_PATH}"
+  echo "App:${Org}:${Name}"
+  echo "Version:${Version}"
+  echo "Commit:${GitCommit}"
+  echo "Build:${BuildTime}"
+  echo "Main_Path:${MainPath}"
   echo "****************************************"
   echo ""
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Auth</title>
+    <link
+            rel="stylesheet"
+            href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3.2.47/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <form action="/oauth2/authorize" method="POST">
+            <h1>Authorize</h1>
+            <p>The client would like to perform actions on your behalf.</p>
+            <p>
+                <button
+                        type="submit"
+                        class="btn btn-primary btn-lg"
+                        style="width:200px;"
+                >
+                    Allow
+                </button>
+            </p>
+        </form>
+    </div>
+    <div id="app">
+        <h3>Authorize</h3>
+        <div>
+            <p>{{ data.content }}</p>
+        </div>
+    </div>
+</div>
+<script>
+    let token = localStorage.getItem("auth")
+    let url = "oauth2/user_info"
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization":"Bearer " + token
+        }
+    }).then((response) => {
+        if (response.status === 200) {
+            let d = response.json()
+            console.log(d)
+        } else {
+            console.log("fail" + response.status)
+        }
+    }).catch((fail) => {
+        console.log(fail)
+    })
+</script>
+<script type="module">
+    import { createApp, reactive } from "vue"
+    let data = reactive({content: "3423453246534678"})
+    createApp({
+        setup() {
+
+            return {
+                data
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

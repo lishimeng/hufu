@@ -6,9 +6,13 @@ import (
 )
 
 func main() {
-	err := buildscript.Generate("oauth2",
-		"lishimeng",
-		"cmd/oauth/main.go", false)
+	err := buildscript.Generate("lishimeng",
+		buildscript.Application{
+			Name:    "oauth2",
+			AppPath: "cmd/oauth",
+			HasUI:   false,
+		},
+	)
 	if err != nil {
 		fmt.Println(err)
 	} else {

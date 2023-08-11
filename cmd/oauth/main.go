@@ -5,12 +5,13 @@ import (
 	"fmt"
 	"github.com/lishimeng/app-starter"
 	etc2 "github.com/lishimeng/app-starter/etc"
-	"github.com/lishimeng/go-log"
-	persistence "github.com/lishimeng/go-orm"
-	"github.com/lishimeng/oauth2/ddd"
+	"github.com/lishimeng/app-starter/factory"
+	"github.com/lishimeng/app-starter/persistence"
+	"github.com/lishimeng/app-starter/token"
+	"github.com/lishimeng/oauth2/cmd/oauth/ddd"
+	"github.com/lishimeng/oauth2/cmd/oauth/static"
 	"github.com/lishimeng/oauth2/internal/db/model"
 	"github.com/lishimeng/oauth2/internal/etc"
-	"github.com/lishimeng/oauth2/static"
 	"net/http"
 	"time"
 )
@@ -28,7 +29,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	time.Sleep(time.Second * 2)
+	time.Sleep(time.Millisecond * 200)
 }
 
 func _main() (err error) {
@@ -64,10 +65,18 @@ func _main() (err error) {
 				return http.FS(static.Static)
 			}).
 			EnableWeb(etc.Config.Web.Listen, ddd.Route).
+			EnableTokenValidator(func(injectFunc app.TokenValidatorInjectFunc) {
+				key := []byte(etc.Config.Session.Key)
+				provider := token.NewJwtProvider(
+					token.WithIssuer(etc.Config.Session.Issuer),
+					token.WithAlg(etc.Config.Session.Alg),
+					token.WithKey(key, key))
+				session := token.NewLocalStorage(provider)
+				injectFunc(session)
+				factory.Add(provider)
+			}).
 			PrintVersion()
 		return err
-	}, func(s string) {
-		log.Info(s)
 	})
 	return
 }

@@ -2,7 +2,10 @@ package static
 
 import (
 	"embed"
+	"net/http"
 )
 
-//go:embed static/* assets/* favicon.ico index.html
+//go:embed *
 var Static embed.FS
+
+var FS = http.FS(Static)

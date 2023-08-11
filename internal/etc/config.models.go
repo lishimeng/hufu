@@ -1,9 +1,10 @@
 package etc
 
 type Configuration struct {
-	Db    db
-	Web   web
-	Redis redis
+	Db      db
+	Web     web
+	Redis   redis
+	Session session
 }
 
 type web struct {
@@ -24,4 +25,10 @@ type db struct {
 	Port     int
 	Database string
 	Ssl      string
+}
+
+type session struct {
+	Key    string
+	Alg    string
+	Issuer string
 }

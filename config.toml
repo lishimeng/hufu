@@ -6,5 +6,10 @@ user = "postgres"
 password = "postgres"
 host = "127.0.0.1"
 port = 5432
-database = "passport"
+database = "oauth2"
 ssl = "disable" #require/verify-full/verify-ca/disable
+
+[session]
+key = "sercrethatmaycontainch@r$32chars"
+alg = "HS256"
+issuer = "www.demo.com"

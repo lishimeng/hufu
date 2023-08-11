@@ -50,11 +50,11 @@ push_image(){
 
 build_all(){
   checkout_tag
-  build_image 'oauth2' 'cmd/oauth'
+  build_image 'hufu' 'cmd/oauth'
 }
 
 push_all(){
-  push_image 'oauth2'
+  push_image 'hufu'
 }
 
 case  $1 in

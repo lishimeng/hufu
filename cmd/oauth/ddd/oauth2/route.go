@@ -2,8 +2,8 @@ package oauth2
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/lishimeng/oauth2/cmd/oauth/ddd/svr"
-	"github.com/lishimeng/oauth2/internal/midware"
+	"github.com/lishimeng/hufu/cmd/oauth/ddd/svr"
+	"github.com/lishimeng/hufu/internal/midware"
 )
 
 var storage svr.Storage

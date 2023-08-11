@@ -5,7 +5,7 @@ import (
 	"github.com/lishimeng/app-starter"
 	"github.com/lishimeng/app-starter/tool"
 	"github.com/lishimeng/go-log"
-	"github.com/lishimeng/oauth2/internal/db/repo"
+	"github.com/lishimeng/hufu/internal/db/repo"
 	"net/url"
 )
 

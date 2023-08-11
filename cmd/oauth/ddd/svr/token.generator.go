@@ -2,7 +2,7 @@ package svr
 
 import (
 	"github.com/lishimeng/app-starter/token"
-	"github.com/lishimeng/oauth2/internal/db/model"
+	"github.com/lishimeng/hufu/internal/db/model"
 	"time"
 )
 

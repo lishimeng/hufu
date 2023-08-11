@@ -2,7 +2,7 @@ package oauth2
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/lishimeng/oauth2/cmd/oauth/static"
+	"github.com/lishimeng/hufu/cmd/oauth/static"
 	"net/http"
 )
 

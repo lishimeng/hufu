@@ -7,8 +7,8 @@ import (
 	token2 "github.com/lishimeng/app-starter/token"
 	"github.com/lishimeng/app-starter/tool"
 	"github.com/lishimeng/go-log"
-	"github.com/lishimeng/oauth2/cmd/oauth/ddd/svr"
-	"github.com/lishimeng/oauth2/internal/db/model"
+	"github.com/lishimeng/hufu/cmd/oauth/ddd/svr"
+	"github.com/lishimeng/hufu/internal/db/model"
 )
 
 type Access struct {

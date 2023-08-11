@@ -8,7 +8,7 @@ import (
 func main() {
 	err := buildscript.Generate("lishimeng",
 		buildscript.Application{
-			Name:    "oauth2",
+			Name:    "hufu",
 			AppPath: "cmd/oauth",
 			HasUI:   false,
 		},

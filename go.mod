@@ -1,4 +1,4 @@
-module github.com/lishimeng/oauth2
+module github.com/lishimeng/hufu
 
 go 1.20
 

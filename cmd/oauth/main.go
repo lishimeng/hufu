@@ -66,10 +66,10 @@ func _main() (err error) {
 			}).
 			EnableWeb(etc.Config.Web.Listen, ddd.Route).
 			EnableTokenValidator(func(injectFunc app.TokenValidatorInjectFunc) {
-				key := []byte(etc.Config.Session.Key)
+				key := []byte(etc.Config.Token.Key)
 				provider := token.NewJwtProvider(
-					token.WithIssuer(etc.Config.Session.Issuer),
-					token.WithAlg(etc.Config.Session.Alg),
+					token.WithIssuer(etc.Config.Token.Issuer),
+					token.WithAlg(etc.Config.Token.Alg),
 					token.WithKey(key, key))
 				session := token.NewLocalStorage(provider)
 				injectFunc(session)

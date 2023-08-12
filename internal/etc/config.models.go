@@ -1,10 +1,10 @@
 package etc
 
 type Configuration struct {
-	Db      db
-	Web     web
-	Redis   redis
-	Session session
+	Db    db
+	Web   web
+	Redis redis
+	Token token
 }
 
 type web struct {
@@ -27,7 +27,7 @@ type db struct {
 	Ssl      string
 }
 
-type session struct {
+type token struct {
 	Key    string
 	Alg    string
 	Issuer string
